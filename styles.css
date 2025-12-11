@@ -22,7 +22,7 @@ body.menu-open { overflow: hidden; }
 img { max-width: 100%; height: auto; display: block; }
 
 /* TYPOGRAPHY */
-h1, h2, h3, h4, .btn, .nav-links a, .menu-price { 
+h1, h2, h3, h4, .btn, .nav-links a, .menu-price, .btn-full-width { 
     font-family: 'Oswald', sans-serif; 
     text-transform: uppercase; 
     letter-spacing: 2px;
@@ -41,33 +41,32 @@ nav {
     align-items: center;
     padding: 20px 40px;
     background: rgba(0, 0, 0, 0.95);
-    position: sticky; /* Sticky header */
+    position: sticky;
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--border);
-    position: relative; /* Needed for centering the links */
 }
 
 .nav-logo-img { height: 40px; width: auto; filter: invert(1); }
 
 /* --- DESKTOP MENU STYLES (CENTERED) --- */
-/* These rules apply ONLY to screens wider than 900px (Desktop/Tablet Landscape) */
+/* These rules apply ONLY to screens wider than 900px */
 @media (min-width: 901px) {
     .nav-links {
         display: flex;
         align-items: center;
         
-        /* THE MAGIC CENTERING CODE */
+        /* THIS CENTERS THE LINKS */
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        width: max-content; /* Ensures it doesn't stretch */
+        width: max-content;
     }
 
     .nav-links a {
         color: #fff;
         text-decoration: none;
-        margin: 0 20px; /* Even spacing around links */
+        margin: 0 20px;
         font-size: 0.85rem;
         font-weight: 400;
         opacity: 0.7;
@@ -76,7 +75,6 @@ nav {
     
     .nav-links a:hover { opacity: 1; }
     
-    /* Button inside the nav */
     .nav-links .btn {
         margin-left: 20px;
         padding: 10px 25px;
@@ -141,16 +139,21 @@ nav {
 /* --- TEAM GRID --- */
 .team-grid { 
     display: grid;
-    /* Default for mobile: 2 columns (wrapping) so they aren't tiny */
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr); /* Mobile Default */
     gap: 15px; 
     margin-top: 40px; 
 }
-
 .team-card { position: relative; overflow: hidden; }
 .team-card img { width: 100%; height: 350px; object-fit: cover; filter: grayscale(100%); transition: 0.3s; }
 .team-card:hover img { filter: grayscale(0%); transform: scale(1.03); }
 .team-info { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); padding: 15px; text-align: center; }
+
+/* --- REVIEWS SECTION --- */
+.review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.review-card { background: #000; border: 1px solid #222; padding: 40px; text-align: center; }
+.stars { color: #fff; letter-spacing: 5px; margin-bottom: 20px; font-size: 1.2rem; }
+.review-text { font-style: italic; color: #ccc; margin-bottom: 20px; }
+.review-author { font-family: 'Oswald'; color: #666; font-size: 0.9rem; text-transform: uppercase; }
 
 /* --- SERVICES LIST --- */
 .menu-list { max-width: 800px; margin: 0 auto; margin-top: 40px; }
@@ -199,6 +202,16 @@ footer { padding: 60px 0; text-align: center; font-size: 0.8rem; color: #444; }
 .branch-btn { display: block; width: 100%; padding: 20px; margin-bottom: 15px; border: 1px solid #333; color: #fff; text-decoration: none; font-family: 'Oswald'; font-size: 1.2rem; transition: 0.2s; }
 .branch-btn:hover { background: #fff; color: #000; border-color: #fff; }
 
+/* --- STICKY MOBILE BUTTON --- */
+.mobile-sticky-btn {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    width: 90%; z-index: 2000; display: none; box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+}
+.btn-full-width {
+    width: 100%; background: #fff; color: #000; padding: 18px 0; border: none;
+    font-weight: 700; cursor: pointer; border-radius: 2px; font-size: 1.1rem;
+}
+
 /* --- RESPONSIVE / MOBILE MENU STYLES --- */
 @media (min-width: 1024px) {
     /* FORCE ONE ROW ON DESKTOP FOR TEAM */
@@ -214,19 +227,19 @@ footer { padding: 60px 0; text-align: center; font-size: 0.8rem; color: #444; }
         flex-direction: column; justify-content: center; align-items: center;
         transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 2000; border-left: 1px solid #333;
-        display: flex; /* Ensure flex is active for mobile layout */
+        display: flex; 
     }
     .nav-links.active { transform: translateX(0); }
-    .nav-links a { 
-        margin: 15px 0; 
-        font-size: 1.5rem; 
-        color: #fff; text-decoration: none;
-    }
+    .nav-links a { margin: 15px 0; font-size: 1.5rem; color: #fff; text-decoration: none; }
     .nav-links .btn { margin: 20px 0 0 0; }
     
     .hamburger { display: block; z-index: 2001; }
     .close-menu-btn { display: block; position: absolute; top: 25px; right: 30px; font-size: 3rem; color: #fff; cursor: pointer; transition: 0.3s; }
     .close-menu-btn:hover { color: #888; }
+
+    /* Sticky Button & Footer */
+    .mobile-sticky-btn { display: block; }
+    footer { padding-bottom: 100px; }
 
     .hero h1 { font-size: 2.8rem; }
     .hero-logo { width: 180px; }
