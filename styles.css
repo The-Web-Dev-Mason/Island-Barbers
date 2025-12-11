@@ -1,0 +1,239 @@
+/* --- RESET & VARIABLES --- */
+:root {
+    --bg-dark: #000000;
+    --bg-card: #0f0f0f;
+    --text-main: #ffffff;
+    --text-muted: #888888;
+    --border: #333333;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+body.menu-open { overflow: hidden; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* TYPOGRAPHY */
+h1, h2, h3, h4, .btn, .nav-links a, .menu-price { 
+    font-family: 'Oswald', sans-serif; 
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+}
+
+/* --- UTILITIES --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.text-center { text-align: center; }
+.section-padding { padding: 100px 0; }
+.divider { width: 60px; height: 3px; background: #fff; margin: 20px auto; }
+
+/* --- NAVIGATION --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.95);
+    position: sticky; /* Sticky header */
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border);
+    position: relative; /* Needed for centering the links */
+}
+
+.nav-logo-img { height: 40px; width: auto; filter: invert(1); }
+
+/* --- DESKTOP MENU STYLES (CENTERED) --- */
+/* These rules apply ONLY to screens wider than 900px (Desktop/Tablet Landscape) */
+@media (min-width: 901px) {
+    .nav-links {
+        display: flex;
+        align-items: center;
+        
+        /* THE MAGIC CENTERING CODE */
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: max-content; /* Ensures it doesn't stretch */
+    }
+
+    .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 20px; /* Even spacing around links */
+        font-size: 0.85rem;
+        font-weight: 400;
+        opacity: 0.7;
+        transition: 0.3s;
+    }
+    
+    .nav-links a:hover { opacity: 1; }
+    
+    /* Button inside the nav */
+    .nav-links .btn {
+        margin-left: 20px;
+        padding: 10px 25px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Base Hamburger & Close styles (Hidden on Desktop) */
+.hamburger { display: none; color: #fff; font-size: 2rem; cursor: pointer; }
+.close-menu-btn { display: none; }
+
+/* --- HERO SECTION --- */
+.hero {
+    min-height: 90vh;
+    background-image: url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-color: #000;
+    background-blend-mode: saturation;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+.hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
+.hero-content { position: relative; z-index: 2; padding: 20px; width: 100%; }
+.hero-logo { width: 250px; height: auto; margin: 0 auto 20px auto; filter: invert(1); }
+.hero h1 { font-size: 3.5rem; line-height: 1; margin-bottom: 10px; }
+.hero p { font-size: 1rem; color: #ccc; letter-spacing: 4px; margin-bottom: 40px; }
+
+/* --- BUTTONS --- */
+.btn {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    padding: 15px 40px;
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: 700;
+    border: 1px solid #fff;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.btn:hover { background: #000; color: #fff; }
+.btn-outline { background: transparent; color: #fff; border: 1px solid #fff; }
+.btn-outline:hover { background: #fff; color: #000; }
+
+/* --- ABOUT SECTION --- */
+.about-section { background: var(--bg-dark); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.about-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
+.about-text p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+.about-img { width: 100%; height: 400px; object-fit: cover; filter: grayscale(100%); border: 1px solid #333; }
+
+/* --- PORTFOLIO SECTION --- */
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
+.portfolio-item { height: 350px; overflow: hidden; border: 1px solid #222; position: relative; }
+.portfolio-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s ease; }
+.portfolio-item:hover img { filter: grayscale(0%); transform: scale(1.1); }
+
+/* --- TEAM GRID --- */
+.team-grid { 
+    display: grid;
+    /* Default for mobile: 2 columns (wrapping) so they aren't tiny */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 15px; 
+    margin-top: 40px; 
+}
+
+.team-card { position: relative; overflow: hidden; }
+.team-card img { width: 100%; height: 350px; object-fit: cover; filter: grayscale(100%); transition: 0.3s; }
+.team-card:hover img { filter: grayscale(0%); transform: scale(1.03); }
+.team-info { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); padding: 15px; text-align: center; }
+
+/* --- SERVICES LIST --- */
+.menu-list { max-width: 800px; margin: 0 auto; margin-top: 40px; }
+.menu-item { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #222; padding: 20px 0; transition: 0.2s; }
+.menu-item:hover { border-color: #555; padding-left: 10px; padding-right: 10px; }
+.menu-title h3 { font-size: 1.3rem; font-weight: 400; }
+.menu-title span { display: block; font-size: 0.8rem; color: #666; font-family: 'Manrope'; text-transform: none; letter-spacing: 0; margin-top: 5px; }
+.menu-price { font-size: 1.3rem; min-width: 70px; text-align: right; }
+
+/* --- CONTACT SECTION --- */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--border); }
+.contact-box { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+.contact-dark { background: #050505; text-align: right; border-right: 1px solid var(--border); }
+.contact-light { background: #111; text-align: left; }
+.contact-label { color: #555; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+.contact-value { font-size: 1.2rem; margin-bottom: 30px; font-family: 'Oswald'; }
+.hours-list p { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #222; padding-bottom: 5px; font-size: 0.9rem; color: #ccc; }
+.hours-list span { color: #fff; font-weight: 700; }
+
+/* --- LOCATIONS & MAPS --- */
+.loc-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.loc-item { padding: 40px 20px; text-align: center; border-right: 1px solid var(--border); transition: 0.3s; }
+.loc-item:last-child { border-right: none; }
+.loc-item:hover { background: #111; }
+.loc-item h3 { font-size: 1.8rem; margin: 15px 0; }
+.loc-item p { color: #888; margin-bottom: 25px; font-size: 0.9rem; }
+
+/* Map Container */
+.map-container { width: 100%; height: 250px; margin-bottom: 20px; background: #222; }
+/* Maps iframe - Full Color */
+iframe { width: 100%; height: 100%; border: 0; pointer-events: none; }
+.map-container:hover iframe { pointer-events: auto; }
+
+/* --- FOOTER & SOCIAL --- */
+footer { padding: 60px 0; text-align: center; font-size: 0.8rem; color: #444; }
+.social-links { display: flex; justify-content: center; margin-bottom: 30px; }
+.social-icon-link { display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border: 1px solid #333; border-radius: 50%; color: #fff; text-decoration: none; transition: 0.3s; }
+.social-icon-link:hover { background: #fff; color: #000; border-color: #fff; }
+.social-icon-svg { width: 24px; height: 24px; fill: currentColor; }
+
+/* --- MODAL --- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: flex; justify-content: center; align-items: center; z-index: 3000; opacity: 0; pointer-events: none; transition: 0.3s; backdrop-filter: blur(5px); }
+.modal-overlay.active { opacity: 1; pointer-events: all; }
+.modal-box { background: #000; border: 1px solid #fff; padding: 50px; width: 90%; max-width: 500px; text-align: center; position: relative; }
+.close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: #fff; cursor: pointer; line-height: 0.5; }
+.branch-btn { display: block; width: 100%; padding: 20px; margin-bottom: 15px; border: 1px solid #333; color: #fff; text-decoration: none; font-family: 'Oswald'; font-size: 1.2rem; transition: 0.2s; }
+.branch-btn:hover { background: #fff; color: #000; border-color: #fff; }
+
+/* --- RESPONSIVE / MOBILE MENU STYLES --- */
+@media (min-width: 1024px) {
+    /* FORCE ONE ROW ON DESKTOP FOR TEAM */
+    .team-grid { grid-template-columns: repeat(6, 1fr); }
+}
+
+@media (max-width: 900px) {
+    .section-padding { padding: 60px 0; }
+    
+    /* Mobile Menu - Slide In */
+    .nav-links { 
+        position: fixed; top: 0; right: 0; height: 100vh; width: 100%; background-color: #000;
+        flex-direction: column; justify-content: center; align-items: center;
+        transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 2000; border-left: 1px solid #333;
+        display: flex; /* Ensure flex is active for mobile layout */
+    }
+    .nav-links.active { transform: translateX(0); }
+    .nav-links a { 
+        margin: 15px 0; 
+        font-size: 1.5rem; 
+        color: #fff; text-decoration: none;
+    }
+    .nav-links .btn { margin: 20px 0 0 0; }
+    
+    .hamburger { display: block; z-index: 2001; }
+    .close-menu-btn { display: block; position: absolute; top: 25px; right: 30px; font-size: 3rem; color: #fff; cursor: pointer; transition: 0.3s; }
+    .close-menu-btn:hover { color: #888; }
+
+    .hero h1 { font-size: 2.8rem; }
+    .hero-logo { width: 180px; }
+    .about-grid, .contact-grid, .loc-grid { grid-template-columns: 1fr; }
+    .contact-dark { text-align: center; border-right: none; border-bottom: 1px solid var(--border); }
+    .contact-light { padding: 40px 20px; }
+    .loc-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .menu-item { flex-wrap: wrap; } .menu-price { margin-left: auto; }
+}
+@media (max-width: 480px) { .hero h1 { font-size: 2.2rem; } .btn { padding: 12px 30px; } .container { padding: 0 15px; } }
