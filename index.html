@@ -6,13 +6,16 @@
     <title>Island Barbers | Canary Wharf, Poplar & Essex</title>
     <meta name="description" content="Premium grooming in London. Locations in Canary Wharf (Isle of Dogs), Poplar, and Dagenham.">
     
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="Logo.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Manrope:wght@300;400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <script type="application/ld+json">
     {
@@ -180,18 +183,29 @@
     <section id="locations">
         <div class="loc-grid">
             <div class="loc-item">
-                <div class="map-container"><iframe src="https://maps.google.com/maps?q=152%20Westferry%20Road%20London%20E14%203ED&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe></div>
-                <h3>Isle of Dogs</h3><p>152 Westferry Road<br>London, E14 3ED</p>
+                <div class="map-container">
+                    <iframe src="https://maps.google.com/maps?q=152%20Westferry%20Road%20London%20E14%203ED&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+                </div>
+                <h3>Isle of Dogs</h3>
+                <p>152 Westferry Road<br>London, E14 3ED</p>
                 <button onclick="window.location.href='LINK_FOR_WESTFERRY'" class="btn-outline" style="padding: 10px 20px; font-size: 0.8rem;">BOOK WESTFERRY</button>
             </div>
+            
             <div class="loc-item">
-                <div class="map-container"><iframe src="https://maps.google.com/maps?q=47%20Upper%20North%20Street%20London%20E14%206FY&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe></div>
-                <h3>Poplar</h3><p>47 Upper North Street<br>London, E14 6FY</p>
+                <div class="map-container">
+                    <iframe src="https://maps.google.com/maps?q=47%20Upper%20North%20Street%20London%20E14%206FY&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+                </div>
+                <h3>Poplar</h3>
+                <p>47 Upper North Street<br>London, E14 6FY</p>
                 <button onclick="window.location.href='LINK_FOR_POPLAR'" class="btn-outline" style="padding: 10px 20px; font-size: 0.8rem;">BOOK POPLAR</button>
             </div>
+
             <div class="loc-item">
-                <div class="map-container"><iframe src="https://maps.google.com/maps?q=Dagenham%20RM9%206FQ&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe></div>
-                <h3>Essex</h3><p>RM9 6FQ<br>Dagenham</p>
+                <div class="map-container">
+                    <iframe src="https://maps.google.com/maps?q=Dagenham%20RM9%206FQ&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+                </div>
+                <h3>Essex</h3>
+                <p>RM9 6FQ<br>Dagenham</p>
                 <button onclick="window.location.href='LINK_FOR_ESSEX'" class="btn-outline" style="padding: 10px 20px; font-size: 0.8rem;">BOOK DAGENHAM</button>
             </div>
         </div>
@@ -201,7 +215,7 @@
         <div class="container">
             <div class="social-links">
                 <a href="https://www.instagram.com/islandbarbers/" target="_blank" class="social-icon-link" aria-label="Instagram">
-                    <svg class="social-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.5 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.9 0-184.9zm-49.1 244.4c-13.3 13.3-38.4 16-81.8 16.7-44.2.7-131.6.7-175.9 0-43.4-.7-68.5-3.4-81.8-16.7-13.3-13.3-16-38.4-16.7-81.8-.7-44.2-.7-131.6 0-175.9.7-43.4 3.4-68.5 16.7-81.8 13.3-13.3 38.4-16 81.8-16.7 44.2-.7 131.6-.7 175.9 0 43.4.7 68.5 3.4 81.8 16.7 13.3 13.3 16 38.4 16.7 81.8.7 44.2.7 131.6 0 175.9-.7 43.4-3.4 68.5-16.7 81.8z"/></svg>
+                    <svg class="social-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.5 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.9 0-184.9zm-49.1 244.4c-13.3 13.3-38.4 16-81.8 16.7-44.2.7-131.6.7-175.9 0-43.4-.7-68.5-3.4-81.8-16.7-13.3-13.3-16-38.4-16.7-81.8-.7-44.2-.7-131.6 0-175.9.7-43.4 3.4-68.5 16.7-81.8 13.3-13.3 38.4-16 81.8-16.7 44.2-.7 131.6-.7 175.9 0 43.4.7 68.5 3.4 81.8 16.7 81.8z"/></svg>
                 </a>
             </div>
             <p style="margin-bottom: 10px; color: #fff;">ISLAND BARBERS</p>
@@ -216,10 +230,42 @@
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-box">
             <span class="close-btn" onclick="closeModal()">×</span>
-            <h2 style="margin-bottom: 20px;">Choose Location</h2>
-            <a href="LINK_FOR_WESTFERRY" class="branch-btn">Isle of Dogs (Westferry)</a>
-            <a href="LINK_FOR_POPLAR" class="branch-btn">Poplar (Upper North St)</a>
-            <a href="LINK_FOR_ESSEX" class="branch-btn">Essex (Dagenham)</a>
+            <h2 style="margin-bottom: 20px;">Book Appointment</h2>
+            
+            <div id="booking-step-1">
+                <div style="margin-bottom: 15px; text-align: left;">
+                    <label style="color:#888; font-size: 0.9rem;">Choose Barber</label>
+                    <select id="barberSelect" onchange="resetTimeSlot()" style="width: 100%; padding: 12px; background: #111; color: #fff; border: 1px solid #333; margin-top: 5px;">
+                        <option value="H">H</option>
+                        <option value="Henrique">Henrique</option>
+                        <option value="Diego">Diego</option>
+                        <option value="Remy">Remy</option>
+                        <option value="Zak">Zak</option>
+                        <option value="Ozzy">Ozzy</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 20px; text-align: left;">
+                    <label style="color:#888; font-size: 0.9rem;">Choose Date</label>
+                    <input type="date" id="dateSelect" onchange="loadAvailability()" style="width: 100%; padding: 12px; background: #111; color: #fff; border: 1px solid #333; margin-top: 5px;">
+                </div>
+
+                <p id="loading-text" style="display:none; color: #d4af37;">Checking availability...</p>
+                <div id="time-slots" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px;">
+                    </div>
+            </div>
+
+            <div id="booking-step-2" style="display: none; text-align: left;">
+                <h4 id="confirm-details-header" style="color: #fff; margin-bottom: 15px;">Confirm Details</h4>
+                <input type="text" id="custName" placeholder="Your Name" style="width: 100%; padding: 12px; margin-bottom: 10px; background: #111; border: 1px solid #333; color: white;">
+                <input type="email" id="custEmail" placeholder="Your Email" style="width: 100%; padding: 12px; margin-bottom: 10px; background: #111; border: 1px solid #333; color: white;">
+                <input type="tel" id="custPhone" placeholder="Mobile Number" style="width: 100%; padding: 12px; margin-bottom: 20px; background: #111; border: 1px solid #333; color: white;">
+                
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="backToStep1()" class="btn-outline" style="flex: 1; padding: 12px;">Back</button>
+                    <button onclick="finalizeBooking()" class="btn" style="flex: 1; padding: 12px;">Confirm Booking</button>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Booking | Island Barbers</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <style>
+        body { 
+            display: flex; justify-content: center; align-items: center; 
+            height: 100vh; text-align: center; background: #000; color: #fff;
+            font-family: 'Manrope', sans-serif;
+        }
+        .cancel-box { 
+            background: #111; padding: 40px; border: 1px solid #333; 
+            max-width: 500px; width: 90%; position: relative;
+        }
+        .details { 
+            background: #222; padding: 20px; margin: 20px 0; 
+            border-left: 4px solid #d4af37; text-align: left; 
+        }
+        .logo-img {
+            height: 60px; width: auto; filter: invert(1); 
+            display: block; margin: 0 auto 20px auto; 
+        }
+        .btn-cancel {
+            background: #d9534f; color: #fff; border: none; padding: 15px; 
+            width: 100%; font-family: 'Oswald', sans-serif; font-size: 1rem;
+            cursor: pointer; transition: 0.3s; margin-bottom: 10px;
+        }
+        .btn-cancel:hover { background: #c9302c; }
+        .btn-reschedule {
+            background: transparent; color: #fff; border: 1px solid #fff; 
+            padding: 15px; width: 100%; font-family: 'Oswald', sans-serif; 
+            font-size: 1rem; cursor: pointer; transition: 0.3s;
+        }
+        .btn-reschedule:hover { background: #fff; color: #000; }
+        h2, h3 { font-family: 'Oswald', sans-serif; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+    <div class="cancel-box">
+        <img src="Logo.png" alt="Island Barbers" class="logo-img">
+        <h2 style="margin-bottom: 10px;">MANAGE APPOINTMENT</h2>
+        
+        <div id="loading">Loading details...</div>
+        
+        <div id="booking-info" style="display:none;">
+            <div class="details">
+                <p style="margin: 5px 0; color:#aaa;">Barber: <b style="color:#fff" id="b-name"></b></p>
+                <p style="margin: 5px 0; color:#aaa;">Date: <b style="color:#fff" id="b-date"></b></p>
+                <p style="margin: 5px 0; color:#aaa;">Time: <b style="color:#fff" id="b-time"></b></p>
+            </div>
+            <p style="color:#ccc; margin-bottom: 20px;">What would you like to do?</p>
+            <button onclick="processCancellation(false)" class="btn-cancel">CANCEL APPOINTMENT</button>
+            <button onclick="processCancellation(true)" class="btn-reschedule">RESCHEDULE (Change Time)</button>
+        </div>
+
+        <div id="success-msg" style="display:none; color: #d4af37; margin-top: 20px;">
+            <h3 id="success-title">SUCCESS</h3>
+            <p id="success-text">Your booking has been cancelled.</p>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. CONFIGURATION ---
+        const SUPABASE_URL = 'https://afenurhtovmnbbdjftul.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmZW51cmh0b3ZtbmJiZGpmdHVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU0NzM4NTgsImV4cCI6MjA4MTA0OTg1OH0.r-uZD8flq8ASNCuPyZTDE440DUwK5IHjol34X2awDX4';
+
+        
+        const EMAILJS_KEY = 'x9PAm8i8ok4zRcecm';
+        const EMAILJS_SERVICE = 'service_bgc0wmi';
+        const EMAILJS_TEMPLATE = 'template_zkjdn1h'; // <--- NEW TEMPLATE ID
+
+        // Initialize Clients
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        emailjs.init(EMAILJS_KEY);
+
+        // Get ID from URL
+        const params = new URLSearchParams(window.location.search);
+        const bookingId = params.get('id');
+        let bookingData = null; // Store data here
+
+        // --- LOAD DETAILS ---
+        async function loadDetails() {
+            if (!bookingId) {
+                document.getElementById('loading').innerText = "Invalid Link.";
+                return;
+            }
+            const { data, error } = await supabaseClient
+                .from('bookings')
+                .select('*')
+                .eq('id', bookingId)
+                .single();
+
+            if (error || !data) {
+                document.getElementById('loading').innerText = "Booking not found (it may have already been cancelled).";
+            } else {
+                bookingData = data; // Save data for email later
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('booking-info').style.display = 'block';
+                
+                document.getElementById('b-name').innerText = data.barber_name;
+                document.getElementById('b-date').innerText = data.booking_date;
+                document.getElementById('b-time').innerText = data.booking_time;
+            }
+        }
+        loadDetails();
+
+        // --- PROCESS CANCELLATION ---
+        async function processCancellation(isRescheduling) {
+            const actionText = isRescheduling ? "Reschedule" : "Cancel";
+            if (!confirm(`Are you sure you want to ${actionText} this appointment?`)) return;
+
+            // 1. DELETE FROM DB
+            const { error } = await supabaseClient.from('bookings').delete().eq('id', bookingId);
+
+            if (error) {
+                alert("Error deleting booking: " + error.message);
+                return;
+            }
+
+            // 2. UPDATE UI IMMEDIATELY (So user sees success instantly)
+            document.getElementById('booking-info').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
+
+            if (isRescheduling) {
+                document.getElementById('success-title').innerText = "REDIRECTING...";
+                document.getElementById('success-text').innerText = "Old slot cancelled. Taking you to book a new time...";
+                // Redirect logic
+                setTimeout(() => { window.location.href = "index.html"; }, 2500);
+            } else {
+                document.getElementById('success-title').innerText = "CANCELLED";
+                document.getElementById('success-text').innerText = "Your appointment has been successfully cancelled.";
+            }
+
+            // 3. SEND EMAIL (Safely in background)
+            if (bookingData) {
+                try {
+                    console.log("Attempting to send email...");
+                    const statusMessage = isRescheduling 
+                        ? "You requested to reschedule. Your old slot has been cancelled." 
+                        : "Your appointment has been successfully cancelled.";
+
+                    const emailParams = {
+                        name: bookingData.customer_name,
+                        email: bookingData.customer_email, 
+                        barber: bookingData.barber_name,
+                        date: bookingData.booking_date,
+                        time: bookingData.booking_time,
+                        service: `UPDATE: ${statusMessage}`, 
+                        cancel_link: "" 
+                    };
+
+                    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, emailParams);
+                    console.log("Email sent successfully!");
+                } catch (emailError) {
+                    console.error("EMAIL FAILED:", emailError);
+                    // We DO NOT alert the user, because the cancellation itself worked fine.
+                }
+            }
+        }
+    </script>
+</body>
+</html>

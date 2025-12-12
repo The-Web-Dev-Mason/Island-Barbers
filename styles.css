@@ -50,13 +50,10 @@ nav {
 .nav-logo-img { height: 40px; width: auto; filter: invert(1); }
 
 /* --- DESKTOP MENU STYLES (CENTERED) --- */
-/* These rules apply ONLY to screens wider than 900px */
 @media (min-width: 901px) {
     .nav-links {
         display: flex;
         align-items: center;
-        
-        /* THIS CENTERS THE LINKS */
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -139,7 +136,7 @@ nav {
 /* --- TEAM GRID --- */
 .team-grid { 
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Mobile Default */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 15px; 
     margin-top: 40px; 
 }
@@ -194,13 +191,19 @@ footer { padding: 60px 0; text-align: center; font-size: 0.8rem; color: #444; }
 .social-icon-link:hover { background: #fff; color: #000; border-color: #fff; }
 .social-icon-svg { width: 24px; height: 24px; fill: currentColor; }
 
-/* --- MODAL --- */
+/* --- MODAL & BOOKING STYLES --- */
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: flex; justify-content: center; align-items: center; z-index: 3000; opacity: 0; pointer-events: none; transition: 0.3s; backdrop-filter: blur(5px); }
 .modal-overlay.active { opacity: 1; pointer-events: all; }
 .modal-box { background: #000; border: 1px solid #fff; padding: 50px; width: 90%; max-width: 500px; text-align: center; position: relative; }
 .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: #fff; cursor: pointer; line-height: 0.5; }
 .branch-btn { display: block; width: 100%; padding: 20px; margin-bottom: 15px; border: 1px solid #333; color: #fff; text-decoration: none; font-family: 'Oswald'; font-size: 1.2rem; transition: 0.2s; }
 .branch-btn:hover { background: #fff; color: #000; border-color: #fff; }
+
+/* Booking Form Elements */
+.slot-btn { background: #fff; color: #000; border: 1px solid #ccc; padding: 10px 15px; cursor: pointer; font-family: 'Oswald', sans-serif; min-width: 70px; transition: 0.2s; margin-bottom: 5px; }
+.slot-btn:hover { background: #000; color: #fff; border-color: #fff; }
+.slot-btn.taken { background: #222; color: #555; border-color: #333; text-decoration: line-through; cursor: not-allowed; }
+.slot-btn.selected { background: #000; color: #fff; border-color: #d4af37; transform: scale(1.1); }
 
 /* --- STICKY MOBILE BUTTON --- */
 .mobile-sticky-btn {
@@ -214,7 +217,6 @@ footer { padding: 60px 0; text-align: center; font-size: 0.8rem; color: #444; }
 
 /* --- RESPONSIVE / MOBILE MENU STYLES --- */
 @media (min-width: 1024px) {
-    /* FORCE ONE ROW ON DESKTOP FOR TEAM */
     .team-grid { grid-template-columns: repeat(6, 1fr); }
 }
 
