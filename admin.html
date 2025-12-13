@@ -41,18 +41,24 @@
 
     <script>
         // --- CONFIG ---
-        // PASTE YOUR KEYS HERE (Make sure no spaces!)
         const SUPABASE_URL = 'https://afenurhtovmnbbdjftul.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmZW51cmh0b3ZtbmJiZGpmdHVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU0NzM4NTgsImV4cCI6MjA4MTA0OTg1OH0.r-uZD8flq8ASNCuPyZTDE440DUwK5IHjol34X2awDX4';
         
-        // FIX: Variable renamed to 'supabaseClient'
+        // --- SECURITY: THE HASHED PIN ---
+        // SHA-256 hash for "1234"
+        const PIN_HASH = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
+
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        // --- LOGIN LOGIC ---
-        function checkLogin() {
-            const pin = document.getElementById('adminPin').value;
-            // PIN is set to 1234
-            if (pin === "1234") { 
+        // --- LOGIN LOGIC (SECURE) ---
+        async function checkLogin() {
+            const inputPin = document.getElementById('adminPin').value;
+            
+            // 1. Hash the input
+            const hash = await sha256(inputPin);
+
+            // 2. Compare with stored hash
+            if (hash === PIN_HASH) { 
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('dashboard').style.display = 'block';
                 loadBookings();
@@ -61,12 +67,19 @@
             }
         }
 
+        // --- HELPER: HASHING FUNCTION ---
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
         // --- LOAD BOOKINGS ---
         async function loadBookings() {
             const container = document.getElementById('bookings-list');
             container.innerHTML = 'Loading...';
 
-            // Use 'supabaseClient' here
             const { data, error } = await supabaseClient
                 .from('bookings')
                 .select('*')
@@ -88,10 +101,13 @@
             data.forEach(booking => {
                 const div = document.createElement('div');
                 div.className = 'booking-card';
+                // Add Location to the display so they know which shop
                 div.innerHTML = `
                     <div class="booking-info">
                         <strong style="color:#d4af37; font-size:1.2rem;">${booking.booking_time.slice(0,5)}</strong> 
-                        <span style="color:#aaa;"> on ${booking.booking_date}</span><br>
+                        <span style="color:#aaa;"> ${booking.booking_date}</span>
+                        <span style="background:#333; padding:2px 6px; font-size:0.8rem; border-radius:4px; margin-left:10px;">${booking.location || 'Unknown'}</span>
+                        <br>
                         <strong>${booking.barber_name}</strong> - ${booking.customer_name} (${booking.customer_phone})
                     </div>
                     <button class="cancel-btn" onclick="cancelBooking('${booking.id}')">Cancel</button>
@@ -102,9 +118,8 @@
 
         // --- CANCEL BOOKING ---
         async function cancelBooking(id) {
-            if (!confirm("Are you sure you want to cancel this booking? This will open the slot up for others.")) return;
+            if (!confirm("Are you sure you want to cancel this booking?")) return;
 
-            // Use 'supabaseClient' here
             const { error } = await supabaseClient
                 .from('bookings')
                 .delete()
@@ -114,7 +129,7 @@
                 alert("Error: " + error.message);
             } else {
                 alert("Booking Cancelled!");
-                loadBookings(); // Refresh list
+                loadBookings(); 
             }
         }
     </script>

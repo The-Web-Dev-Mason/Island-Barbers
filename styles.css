@@ -5,6 +5,8 @@
     --text-main: #ffffff;
     --text-muted: #888888;
     --border: #333333;
+    --gold: #d4af37;
+    --danger: #d9534f;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -22,7 +24,7 @@ body.menu-open { overflow: hidden; }
 img { max-width: 100%; height: auto; display: block; }
 
 /* TYPOGRAPHY */
-h1, h2, h3, h4, .btn, .nav-links a, .menu-price, .btn-full-width { 
+h1, h2, h3, h4, .btn, .nav-links a, .menu-price, .btn-full-width, .slot-btn { 
     font-family: 'Oswald', sans-serif; 
     text-transform: uppercase; 
     letter-spacing: 2px;
@@ -99,9 +101,49 @@ nav {
 }
 .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
 .hero-content { position: relative; z-index: 2; padding: 20px; width: 100%; }
-.hero-logo { width: 250px; height: auto; margin: 0 auto 20px auto; filter: invert(1); }
 .hero h1 { font-size: 3.5rem; line-height: 1; margin-bottom: 10px; }
 .hero p { font-size: 1rem; color: #ccc; letter-spacing: 4px; margin-bottom: 40px; }
+
+/* --- SHINY LOGO EFFECT --- */
+.shiny-logo-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0 auto 20px auto;
+}
+
+.hero-logo { 
+    display: block;
+    width: 250px; 
+    height: auto; 
+    filter: invert(1); 
+    position: relative;
+    z-index: 1;
+}
+
+.shiny-logo-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    z-index: 2;
+    animation: shine-sweep 4s infinite linear;
+}
+
+@keyframes shine-sweep {
+    0% { left: -150%; }
+    40% { left: 150%; }
+    100% { left: 150%; }
+}
 
 /* --- BUTTONS --- */
 .btn {
@@ -117,7 +159,7 @@ nav {
     cursor: pointer;
 }
 .btn:hover { background: #000; color: #fff; }
-.btn-outline { background: transparent; color: #fff; border: 1px solid #fff; }
+.btn-outline { background: transparent; color: #fff; border: 1px solid #fff; padding: 10px 20px; cursor: pointer; transition: 0.3s; }
 .btn-outline:hover { background: #fff; color: #000; }
 
 /* --- ABOUT SECTION --- */
@@ -196,14 +238,18 @@ footer { padding: 60px 0; text-align: center; font-size: 0.8rem; color: #444; }
 .modal-overlay.active { opacity: 1; pointer-events: all; }
 .modal-box { background: #000; border: 1px solid #fff; padding: 50px; width: 90%; max-width: 500px; text-align: center; position: relative; }
 .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: #fff; cursor: pointer; line-height: 0.5; }
-.branch-btn { display: block; width: 100%; padding: 20px; margin-bottom: 15px; border: 1px solid #333; color: #fff; text-decoration: none; font-family: 'Oswald'; font-size: 1.2rem; transition: 0.2s; }
-.branch-btn:hover { background: #fff; color: #000; border-color: #fff; }
 
-/* Booking Form Elements */
+/* Form Elements */
+.modal-box input, .modal-box select {
+    width: 100%; padding: 12px; background: #111; color: #fff; border: 1px solid #333; margin-top: 5px; outline: none;
+}
+.modal-box input:focus, .modal-box select:focus { border-color: #fff; }
+
+/* Slot Buttons */
 .slot-btn { background: #fff; color: #000; border: 1px solid #ccc; padding: 10px 15px; cursor: pointer; font-family: 'Oswald', sans-serif; min-width: 70px; transition: 0.2s; margin-bottom: 5px; }
 .slot-btn:hover { background: #000; color: #fff; border-color: #fff; }
 .slot-btn.taken { background: #222; color: #555; border-color: #333; text-decoration: line-through; cursor: not-allowed; }
-.slot-btn.selected { background: #000; color: #fff; border-color: #d4af37; transform: scale(1.1); }
+.slot-btn.selected { background: #000; color: #fff; border-color: var(--gold); transform: scale(1.1); }
 
 /* --- STICKY MOBILE BUTTON --- */
 .mobile-sticky-btn {
@@ -235,8 +281,14 @@ footer { padding: 60px 0; text-align: center; font-size: 0.8rem; color: #444; }
     .nav-links a { margin: 15px 0; font-size: 1.5rem; color: #fff; text-decoration: none; }
     .nav-links .btn { margin: 20px 0 0 0; }
     
-    .hamburger { display: block; z-index: 2001; }
-    .close-menu-btn { display: block; position: absolute; top: 25px; right: 30px; font-size: 3rem; color: #fff; cursor: pointer; transition: 0.3s; }
+    /* FIX: Lower z-index so the menu (z=2000) covers it */
+    .hamburger { display: block; z-index: 1500; }
+    
+    /* FIX: Align Close Button properly */
+    .close-menu-btn { 
+        display: block; position: absolute; top: 20px; right: 40px; 
+        font-size: 3rem; color: #fff; cursor: pointer; transition: 0.3s; line-height: 1; 
+    }
     .close-menu-btn:hover { color: #888; }
 
     /* Sticky Button & Footer */
@@ -251,4 +303,5 @@ footer { padding: 60px 0; text-align: center; font-size: 0.8rem; color: #444; }
     .loc-item { border-right: none; border-bottom: 1px solid var(--border); }
     .menu-item { flex-wrap: wrap; } .menu-price { margin-left: auto; }
 }
+
 @media (max-width: 480px) { .hero h1 { font-size: 2.2rem; } .btn { padding: 12px 30px; } .container { padding: 0 15px; } }
