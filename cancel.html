@@ -69,13 +69,15 @@
 
     <script>
         // --- 1. CONFIGURATION ---
-        const SUPABASE_URL = 'https://afenurhtovmnbbdjftul.supabase.co';
+        // I have pre-filled these from your script.js file.
+        const SUPABASE_URL = 'https://afenurhtovmnbbdjftul.supabase.co'; 
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmZW51cmh0b3ZtbmJiZGpmdHVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU0NzM4NTgsImV4cCI6MjA4MTA0OTg1OH0.r-uZD8flq8ASNCuPyZTDE440DUwK5IHjol34X2awDX4';
-
         
         const EMAILJS_KEY = 'x9PAm8i8ok4zRcecm';
         const EMAILJS_SERVICE = 'service_bgc0wmi';
-        const EMAILJS_TEMPLATE = 'template_zkjdn1h'; // <--- NEW TEMPLATE ID
+        
+        // IMPORTANT: Replace this with your NEW Cancellation Template ID
+        const EMAILJS_TEMPLATE = 'template_zkjdn1h'; 
 
         // Initialize Clients
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -125,7 +127,7 @@
                 return;
             }
 
-            // 2. UPDATE UI IMMEDIATELY (So user sees success instantly)
+            // 2. UPDATE UI IMMEDIATELY
             document.getElementById('booking-info').style.display = 'none';
             document.getElementById('success-msg').style.display = 'block';
 
@@ -161,7 +163,6 @@
                     console.log("Email sent successfully!");
                 } catch (emailError) {
                     console.error("EMAIL FAILED:", emailError);
-                    // We DO NOT alert the user, because the cancellation itself worked fine.
                 }
             }
         }

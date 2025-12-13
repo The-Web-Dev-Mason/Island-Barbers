@@ -14,7 +14,6 @@ emailjs.init(EMAILJS_PUBLIC_KEY);
 let selectedTime = null;
 
 // --- DATA: BARBERS BY LOCATION ---
-// This ensures people book the right barber for the right shop
 const staffRoster = {
     "Westferry": ["H", "Henrique", "Diego"],
     "Poplar": ["Remy", "Zak"],
@@ -24,10 +23,26 @@ const staffRoster = {
 // --- 2. MODAL & NAVIGATION ---
 function openModal() {
     document.getElementById('bookingModal').classList.add('active');
+    
+    // Set Default Date
     const dateInput = document.getElementById('dateSelect');
     if (!dateInput.value) {
         dateInput.valueAsDate = new Date();
     }
+
+    // FIX: "Sticky" Location - If browser remembered location, trigger update
+    const locSelect = document.getElementById('locationSelect');
+    if (locSelect.value && locSelect.value !== "") {
+        updateBarberList();
+    }
+}
+
+// NEW: Function to open modal with pre-set location (for Homepage buttons)
+function openModalWithLocation(locationName) {
+    openModal();
+    const locSelect = document.getElementById('locationSelect');
+    locSelect.value = locationName;
+    updateBarberList();
 }
 
 function closeModal() {
@@ -35,12 +50,11 @@ function closeModal() {
     backToStep1(); // Reset form
 }
 
-// NEW: Close the Status Popup
+// Custom Status Popup Functions
 function closeStatusModal() {
     document.getElementById('statusModal').classList.remove('active');
 }
 
-// NEW: Show Custom Popup instead of Alert
 function showStatus(title, message, isSuccess) {
     const modal = document.getElementById('statusModal');
     const icon = document.getElementById('statusIcon');
@@ -220,7 +234,6 @@ async function finalizeBooking() {
     }
 
     // B. Generate the Link
-    // Automatically uses the current website URL (works on localhost AND github.io)
     const currentUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
     const bookingId = data[0].id;
     const manageLink = `${currentUrl}/cancel.html?id=${bookingId}`;
