@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haircut & Beard - Island Barbers | Canary Wharf, Poplar & Dagenham</title>
+    <meta name="description"
+        content="The ultimate grooming package at Island Barbers. Professional haircut and beard trim with hot towel finish. Available at all locations.">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Specific Styles for Service Page Header */
+        .service-hero {
+            height: 60vh;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .service-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: url('../Logo.png') no-repeat center center/contain;
+            opacity: 0.08;
+            z-index: 1;
+        }
+
+        .service-feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .service-feature-list li {
+            margin-bottom: 12px;
+            color: #ccc;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .service-feature-list li i {
+            color: var(--gold);
+            margin-right: 12px;
+            margin-top: 5px;
+        }
+
+        .price-card {
+            background: #111;
+            border: 1px solid var(--gold);
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body style="background-color: #000; color: #fff;">
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="../index.html" class="logo-link" style="opacity:0; pointer-events:none;">ISLAND BARBERS</a>
+        </div>
+        <div class="hamburger" onclick="toggleMobileNav()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links">
+            <div class="close-menu-btn" onclick="toggleMobileNav()">×</div>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li class="dropdown">
+                <a href="../index.html#services" class="dropbtn active">Services <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="gents-haircut.html">Gents Haircut</a>
+                    <a href="haircut-and-beard.html" style="color: #d4af37;">Haircut & Beard</a>
+                    <a href="beard-trim.html">Beard Trim</a>
+                    <a href="kids-haircut.html">Kids Haircut</a>
+                    <a href="buzz-cut.html">Buzz Cut</a>
+                    <a href="vip-package.html">VIP Full Grooming Package</a>
+                </div>
+            </li>
+            <li><a href="#" onclick="openModal()" class="booking-link">Book Appointment</a></li>
+            <li><a href="../portfolio.html">Portfolio</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="service-hero">
+        <div class="hero-vignette"></div>
+        <div class="hero-content" style="z-index: 2;">
+            <p style="color: var(--gold); letter-spacing: 2px; font-weight: 700; margin-bottom: 10px;">COMPLETE GROOMING
+            </p>
+            <h1>Haircut & Beard</h1>
+            <p style="font-size: 1.2rem; margin-top: 10px;">The perfect balance of sharp hair and beard</p>
+            <button onclick="openModal()" class="btn" style="margin-top: 20px;">Book Appointment</button>
+        </div>
+    </section>
+
+    <!-- About Service -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <span style="font-size: 2rem; margin-right: 15px; color: var(--gold);">✂️</span>
+                        <h2 style="margin: 0; text-transform: none; color: #fff;">About Our Haircut & Beard Service</h2>
+                    </div>
+                    <p style="font-size: 1.1rem; color: #ccc;">
+                        A great hairstyle deserves an equally sharp beard. At <strong>Island Barbers</strong>, our
+                        <strong>Haircut & Beard service</strong> is designed to deliver a complete, well-balanced look,
+                        combining modern barbering techniques with expert attention to detail.
+                    </p>
+                    <p style="margin-top: 20px; color: #ccc;">
+                        Our barbers carefully shape both your <strong>haircut and beard</strong> to suit your
+                        <strong>face shape, hair type, and personal style</strong>, ensuring a fresh and confident
+                        finish every time. Each appointment begins with a consultation and ends with professional
+                        styling, so you leave looking polished and well-groomed.
+                    </p>
+                </div>
+                <div class="about-img-container">
+                    <img src="../Barber Portfolio Work Images/2.png" alt="Haircut & Beard" class="about-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features & Price -->
+    <section class="section-padding" style="background: #0a0a0a;">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <span style="font-size: 2rem; margin-right: 15px; color: var(--gold);">💈</span>
+                        <h2 style="margin: 0; text-transform: none; color: #fff;">What's Included</h2>
+                    </div>
+                    <ul class="service-feature-list">
+                        <li><i class="fas fa-check"></i> <strong>Tailored haircut</strong> designed to match your
+                            lifestyle and preferences</li>
+                        <li><i class="fas fa-check"></i> <strong>Beard trim and shape-up</strong> with clean, sharp
+                            lines</li>
+                        <li><i class="fas fa-check"></i> <strong>Complimentary hot towel</strong> for comfort and smooth
+                            finish</li>
+                        <li><i class="fas fa-check"></i> <strong>Professional blow-dry & styling</strong> using premium
+                            grooming products</li>
+                        <li><i class="fas fa-check"></i> <strong>Expert aftercare advice</strong> to help maintain your
+                            look</li>
+                    </ul>
+                </div>
+
+                <div class="price-card">
+                    <span style="font-size: 2.5rem;">📅</span>
+                    <h3 style="margin-top: 10px; color: #fff;">Price & Duration</h3>
+                    <div style="font-size: 2.5rem; color: var(--gold); font-weight: 700; margin: 15px 0;">£35</div>
+                    <p style="color: #ccc;">Approx. 45 Minutes</p>
+                    <button onclick="openModal()" class="btn" style="width: 100%; margin-top: 20px;">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 50px;">
+                <span style="color: var(--gold); font-family: 'Oswald'; letter-spacing: 2px;">PREMIUM CARE</span>
+                <h2 style="margin-top: 10px; font-size: 2.5rem;">Why Clients Choose Us</h2>
+                <div class="divider" style="background: var(--gold);"></div>
+            </div>
+
+            <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div class="service-card" style="padding: 20px;">
+                    <div class="service-info" style="background: none; padding: 0;">
+                        <h3 class="service-title" style="margin-bottom: 10px;"><span>💈</span> Experienced</h3>
+                        <p style="font-size: 0.9rem; color: #888;">Barbers skilled in both haircuts and beard grooming.
+                        </p>
+                    </div>
+                </div>
+                <div class="service-card" style="padding: 20px;">
+                    <div class="service-info" style="background: none; padding: 0;">
+                        <h3 class="service-title" style="margin-bottom: 10px;"><span>🔎</span> Detail</h3>
+                        <p style="font-size: 0.9rem; color: #888;">High attention to detail in every cut, edge, and
+                            blend.</p>
+                    </div>
+                </div>
+                <div class="service-card" style="padding: 20px;">
+                    <div class="service-info" style="background: none; padding: 0;">
+                        <h3 class="service-title" style="margin-bottom: 10px;"><span>🧴</span> Products</h3>
+                        <p style="font-size: 0.9rem; color: #888;">Premium grooming products for a long-lasting result.
+                        </p>
+                    </div>
+                </div>
+                <div class="service-card" style="padding: 20px;">
+                    <div class="service-info" style="background: none; padding: 0;">
+                        <h3 class="service-title" style="margin-bottom: 10px;"><span>📍</span> Locations</h3>
+                        <p style="font-size: 0.9rem; color: #888;">Available at all four of our clean, relaxed branches.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center" style="margin-top: 40px; color: #ccc;">
+                Whether you prefer a sharp fade with a defined beard or a more natural, full style, <strong>Island
+                    Barbers</strong> helps you achieve a look that's <strong>balanced, refined, and unmistakably
+                    yours</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Related Services -->
+    <section class="section-padding" style="background: #0a0a0a;">
+        <div class="container">
+            <div style="display: flex; align-items: center; margin-bottom: 30px;">
+                <span style="font-size: 1.5rem; margin-right: 15px; color: var(--gold);">💈</span>
+                <h3 style="margin: 0; color: #fff;">Related Services</h3>
+            </div>
+            <div class="services-grid" style="margin-top: 0;">
+                <div class="service-card">
+                    <img src="../Barber Portfolio Work Images/6.png" alt="Gents Haircut" class="service-img"
+                        style="height: 180px;">
+                    <div class="service-info">
+                        <div class="service-title">Gents Haircut <span>£25</span></div>
+                        <a href="gents-haircut.html" class="service-link">View Service</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="../Barber Portfolio Work Images/5.png" alt="Beard Trim" class="service-img"
+                        style="height: 180px;">
+                    <div class="service-info">
+                        <div class="service-title">Beard Trim <span>£15</span></div>
+                        <a href="beard-trim.html" class="service-link">View Service</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="../Barber Portfolio Work Images/3.png" alt="VIP Package" class="service-img"
+                        style="height: 180px;">
+                    <div class="service-info">
+                        <div class="service-title">VIP Package <span>£50</span></div>
+                        <a href="#" class="service-link">View Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 40px;">
+                <span style="font-size: 2rem; margin-right: 15px; color: var(--gold);">❓</span>
+                <h2 class="text-center" style="margin: 0; color: #fff; text-transform: none;">Frequently Asked Questions
+                </h2>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">Is a hot towel included? <span class="arrow">▼</span></button>
+                    <div class="faq-answer">
+                        <p>Yes, we include a complimentary hot towel enhancement with our Haircut & Beard service for
+                            extra comfort and closer shaves.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Do I need to book? <span class="arrow">▼</span></button>
+                    <div class="faq-answer">
+                        <p>We highly recommend booking, especially for this longer service, but we will always try to
+                            accommodate walk-ins.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Do you use clippers or scissors for the beard? <span
+                            class="arrow">▼</span></button>
+                    <div class="faq-answer">
+                        <p>We use a combination of both clippers for shaping and scissors/razor for detailing, depending
+                            on your desired look.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How often should I book this service? <span
+                            class="arrow">▼</span></button>
+                    <div class="faq-answer">
+                        <p>Most clients book every 2-4 weeks to keep both their hair and beard looking sharp and
+                            well-maintained.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Script -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1: Our Branches -->
+                <div class="footer-col">
+                    <h3>Our Branches</h3>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Canary Wharf</h4>
+                    <p>22 Westferry Rd</p>
+                    <p>Millennium Harbour</p>
+                    <p>London</p>
+                    <p>E14 8LW</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Westferry</h4>
+                    <p>152 Westferry Rd</p>
+                    <p>Isle of Dogs</p>
+                    <p>London</p>
+                    <p>E14 3ED</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Poplar</h4>
+                    <p>47 Upper North St</p>
+                    <p>London</p>
+                    <p>E14 6FY</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Dagenham</h4>
+                    <p>RM9 6FQ</p>
+
+                    
+                </div>
+
+                <!-- Column 2: Contact Us -->
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Email</h4>
+                    <p>info@islandbarbers.net</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Canary Wharf</h4>
+                    <p>07956 123 456</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Westferry</h4>
+                    <p>07852 337 345</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Poplar</h4>
+                    <p>07852 980 723</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Dagenham</h4>
+                    <p>07344 659 905</p>
+
+                    <div class="social-links" style="justify-content: flex-start; margin-top: 20px;">
+                        <a href="https://instagram.com" class="social-icon-link" target="_blank"><i
+                                class="fab fa-instagram social-icon-svg"></i></a>
+                    </div>
+                </div>
+
+                <!-- Column 3: Quick Links -->
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="#" onclick="openModal()">Book Appointment</a></li>
+                        <li><a href="../portfolio.html">Portfolio</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+
+                        <!-- Services Links -->
+                        <li style="margin-top: 10px;"><a href="gents-haircut.html">Gents Haircut</a></li>
+                        <li><a href="haircut-and-beard.html">Haircut & Beard</a></li>
+                        <li><a href="beard-trim.html">Beard Trim</a></li>
+                        <li><a href="kids-haircut.html">Kids Haircut (Under 11)</a></li>
+                        <li><a href="buzz-cut.html">Buzz Cut</a></li>
+                        <li><a href="buzz-cut.html">Buzz Cut & Beard</a></li>
+                        <li><a href="#">VIP Full Grooming Package</a></li>
+
+                        <li style="margin-top: 10px;"><a href="../contact.html">Contact</a></li>
+                        <li><a href="../terms.html">Terms & Conditions</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2023 Island Barbers</p>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 5px;">Powered by <a href="#"
+                        style="color: #888; text-decoration: none;">The Web Dev Mason</a></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-btn" onclick="closeModal()">×</span>
+            <h2 style="margin-bottom: 20px;">Book Appointment</h2>
+
+            <div id="booking-step-1">
+                <div style="margin-bottom: 15px; text-align: left;">
+                    <label style="color:#888; font-size: 0.9rem;">Choose Location</label>
+                    <select id="locationSelect" onchange="updateBarberList()"
+                        style="width: 100%; padding: 12px; background: #111; color: #fff; border: 1px solid #333; margin-top: 5px;">
+                        <option value="" disabled selected>Select a Shop</option>
+                        <option value="Westferry">Isle of Dogs (Westferry)</option>
+                        <option value="Poplar">Poplar (Upper North St)</option>
+                        <option value="Essex">Essex (Dagenham)</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 15px; text-align: left;">
+                    <label style="color:#888; font-size: 0.9rem;">Choose Barber</label>
+                    <select id="barberSelect" onchange="resetTimeSlot()" disabled
+                        style="width: 100%; padding: 12px; background: #111; color: #fff; border: 1px solid #333; margin-top: 5px; opacity: 0.5;">
+                        <option>Select Location First</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 20px; text-align: left;">
+                    <label style="color:#888; font-size: 0.9rem;">Choose Date</label>
+                    <input type="date" id="dateSelect" onchange="loadAvailability()"
+                        style="width: 100%; padding: 12px; background: #111; color: #fff; border: 1px solid #333; margin-top: 5px;">
+                </div>
+
+                <p id="loading-text" style="display:none; color: #d4af37;">Checking availability...</p>
+                <div id="time-slots"
+                    style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px;">
+                </div>
+            </div>
+
+            <div id="booking-step-2" style="display: none; text-align: left;">
+                <h4 id="confirm-details-header" style="color: #fff; margin-bottom: 15px;">Confirm Details</h4>
+                <input type="text" id="custName" placeholder="Your Name"
+                    style="width: 100%; padding: 12px; margin-bottom: 10px; background: #111; border: 1px solid #333; color: white;">
+                <input type="email" id="custEmail" placeholder="Your Email"
+                    style="width: 100%; padding: 12px; margin-bottom: 10px; background: #111; border: 1px solid #333; color: white;">
+                <input type="tel" id="custPhone" placeholder="Mobile Number"
+                    style="width: 100%; padding: 12px; margin-bottom: 20px; background: #111; border: 1px solid #333; color: white;">
+
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="backToStep1()" class="btn-outline" style="flex: 1; padding: 12px;">Back</button>
+                    <button onclick="finalizeBooking()" class="btn" style="flex: 1; padding: 12px;">Confirm
+                        Booking</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="statusModal" class="modal-overlay" style="z-index: 4000;">
+        <div class="modal-box" style="max-width: 400px; border-color: #333;">
+            <div id="statusIcon" style="font-size: 3rem; margin-bottom: 15px;"></div>
+            <h3 id="statusTitle" style="font-size: 1.5rem; margin-bottom: 10px;"></h3>
+            <p id="statusMessage" style="color: #ccc; margin-bottom: 25px;"></p>
+            <button onclick="closeStatusModal()" class="btn" style="width: 100%;">OK</button>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon Loyalty Card</title>
+    <style>
+        body { font-family: 'Helvetica Neue', sans-serif; text-align: center; background-color: #fce4ec; padding: 20px; }
+        .card {
+            background: white; max-width: 400px; margin: 0 auto; padding: 20px;
+            border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid #d81b60;
+        }
+        h2 { color: #880e4f; }
+        .stamps-container { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 20px 0; }
+        .stamp {
+            height: 50px; width: 50px; background-color: #eee; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto;
+            border: 2px dashed #aaa; font-size: 20px; color: white; transition: all 0.3s;
+        }
+        .stamp.filled { background-color: #d81b60; border: 2px solid #d81b60; }
+        
+        /* Special Markers */
+        .stamp:nth-child(5) { border-color: #ffb300; } 
+        .stamp:nth-child(10) { border-color: #ffb300; }
+
+        .controls { margin-top: 20px; }
+        button {
+            padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; margin: 5px;
+        }
+        .btn-add { background-color: #d81b60; color: white; }
+        .btn-reset { background-color: #ccc; color: #333; }
+        
+        .message { margin-top: 15px; font-weight: bold; color: #d81b60; min-height: 24px; }
+        .reward-badge { display:none; background: #ffb300; color: #fff; padding: 5px; border-radius: 4px; font-size: 12px; margin-top:5px;}
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>✨ Beauty Loyalty Card ✨</h2>
+    <p>Collect stamps for rewards!</p>
+    
+    <div class="stamps-container" id="grid">
+        </div>
+
+    <div class="message" id="statusMsg">Start collecting!</div>
+
+    <div class="controls">
+        <button class="btn-add" onclick="addStamp()">+ Add Stamp</button>
+        <button class="btn-reset" onclick="resetCard()">Reset</button>
+    </div>
+    
+    <div style="margin-top: 20px; text-align: left; font-size: 14px; color: #555;">
+        <strong>Rewards:</strong><br>
+        5 Stamps: <span style="color:#d81b60">Free Hot Wax / Threading</span><br>
+        10 Stamps: <span style="color:#d81b60">Free Haircut</span>
+    </div>
+</div>
+
+<script>
+    let currentStamps = 0;
+    const maxStamps = 10;
+    const grid = document.getElementById('grid');
+    const msg = document.getElementById('statusMsg');
+
+    // Initialize Grid
+    function initGrid() {
+        grid.innerHTML = '';
+        for (let i = 1; i <= maxStamps; i++) {
+            let div = document.createElement('div');
+            div.className = 'stamp';
+            div.id = 'stamp-' + i;
+            if (i === 5) div.innerHTML = '🎁'; // 5th stamp icon
+            if (i === 10) div.innerHTML = '✂️'; // 10th stamp icon
+            grid.appendChild(div);
+        }
+    }
+
+    function addStamp() {
+        if (currentStamps < maxStamps) {
+            currentStamps++;
+            document.getElementById('stamp-' + currentStamps).classList.add('filled');
+            document.getElementById('stamp-' + currentStamps).innerHTML = '✓';
+            
+            checkRewards();
+        }
+    }
+
+    function checkRewards() {
+        if (currentStamps === 5) {
+            msg.innerText = "🎉 REWARD UNLOCKED: Free Hot Wax/Threading!";
+            alert("Customer has earned a Free Hot Wax or Threading!");
+        } else if (currentStamps === 10) {
+            msg.innerText = "🎉 REWARD UNLOCKED: Free Haircut!";
+            alert("Customer has earned a Free Haircut! Card is full.");
+        } else {
+            msg.innerText = `${currentStamps} stamps collected.`;
+        }
+    }
+
+    function resetCard() {
+        if(confirm("Reset this card to zero?")) {
+            currentStamps = 0;
+            msg.innerText = "Start collecting!";
+            initGrid();
+        }
+    }
+
+    initGrid();
+</script>
+
+</body>
+</html>

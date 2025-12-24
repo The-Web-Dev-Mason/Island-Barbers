@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - Island Barbers</title>
+    <meta name="description"
+        content="Terms & Conditions for Island Barbers. Read about our usage policies, booking rules, and liability information.">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Specific Styles for Legal Pages */
+        .legal-content {
+            padding: 120px 0 80px;
+            /* Space for fixed navbar */
+            color: #ccc;
+        }
+
+        .legal-content h1 {
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .legal-section {
+            margin-bottom: 30px;
+        }
+
+        .legal-section h2 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .legal-section p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .legal-section ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .legal-section ul li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body id="terms">
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" class="logo-link" style="opacity:0; pointer-events:none;">ISLAND BARBERS</a>
+        </div>
+        <div class="hamburger" onclick="toggleMobileNav()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links">
+            <div class="close-menu-btn" onclick="toggleMobileNav()">×</div>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown">
+                <a href="#services" class="dropbtn">Services <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="services/gents-haircut.html">Gents Haircut</a>
+                    <a href="services/haircut-and-beard.html">Haircut & Beard</a>
+                    <a href="services/beard-trim.html">Beard Trim</a>
+                    <a href="services/kids-haircut.html">Kids Haircut</a>
+                    <a href="services/buzz-cut.html">Buzz Cut</a>
+                    <a href="services/vip-package.html">VIP Full Grooming Package</a>
+                </div>
+            </li>
+            <li><a href="#" onclick="openModal()" class="booking-link">Book Appointment</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="legal-content">
+        <div class="container">
+            <h1>Terms & Conditions</h1>
+
+            <div class="legal-section">
+                <h2>1. Introduction</h2>
+                <p>Welcome to Island Barbers. These Terms & Conditions govern your use of our website and services. By
+                    accessing our website or booking an appointment with us, you agree to be bound by these terms.</p>
+                <p>If you do not agree with any part of these Terms & Conditions, please do not use our website or
+                    services.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>2. About Us</h2>
+                <p>Island Barbers operates professional barber services across multiple locations in London, including
+                    Canary Wharf, Westferry, Poplar, and Dagenham.</p>
+                <p>Website: https://islandbarbers.com<br>Email: info@islandbarbers.com</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>3. Use of Our Website</h2>
+                <p>You agree to use our website:</p>
+                <ul>
+                    <li>For lawful purposes only</li>
+                    <li>In a way that does not infringe the rights of others</li>
+                    <li>Without attempting to damage, disrupt, or misuse the website or its content</li>
+                </ul>
+                <p>We reserve the right to restrict access to our website if misuse is detected.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>4. Appointments & Bookings</h2>
+                <p>Appointments are made through our third-party booking provider (e.g. Booksy).</p>
+                <ul>
+                    <li>Availability may vary by location and barber</li>
+                    <li>We reserve the right to cancel or reschedule appointments when necessary</li>
+                    <li>Late arrivals may result in shortened services or cancellation</li>
+                </ul>
+                <p>Please get in touch with your chosen branch directly for booking-related enquiries.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>5. Pricing & Payments</h2>
+                <ul>
+                    <li>All prices displayed are in GBP (£)</li>
+                    <li>Prices may vary by service and location</li>
+                    <li>We reserve the right to change prices at any time without prior notice</li>
+                </ul>
+                <p>Payment is due at the time of service unless otherwise stated.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>6. Cancellations & No-Shows</h2>
+                <p>We kindly request that clients provide notice if they are unable to attend an appointment.</p>
+                <p>Repeated no-shows or late cancellations may result in booking restrictions at our discretion.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>7. Gift Cards & Promotions</h2>
+                <p>Any promotions, discounts, or gift cards are subject to availability and specific terms communicated
+                    at the time of issue.</p>
+                <p>Island Barbers reserves the right to withdraw or modify promotions without notice.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>8. Health & Safety</h2>
+                <p>Clients are responsible for informing our barbers of:</p>
+                <ul>
+                    <li>Allergies</li>
+                    <li>Skin conditions</li>
+                    <li>Medical issues that may affect services</li>
+                </ul>
+                <p>Island Barbers is not liable for issues arising from undisclosed conditions.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>9. Intellectual Property</h2>
+                <p>All content on this website, including text, images, logos, and branding, is the property of Island
+                    Barbers and may not be copied, reused, or reproduced without written permission.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>10. Limitation of Liability</h2>
+                <p>Island Barbers shall not be liable for:</p>
+                <ul>
+                    <li>Indirect or consequential loss</li>
+                    <li>Loss of data or business</li>
+                    <li>Issues beyond our reasonable control</li>
+                </ul>
+                <p>Nothing in these Terms limits liability where it cannot be excluded under UK law.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>11. Privacy & Data Protection</h2>
+                <p>We are committed to protecting your personal data. Please refer to our Privacy Policy for details on
+                    how we collect, store, and use personal information in compliance with UK GDPR.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>12. Third-Party Links</h2>
+                <p>Our website may contain links to third-party websites or booking platforms. We are not responsible
+                    for the content or privacy practices of these external sites.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>13. Changes to These Terms</h2>
+                <p>We may update these Terms & Conditions from time to time. Any changes will be posted on this page
+                    with an updated date.</p>
+                <p>Continued use of the website constitutes acceptance of the updated terms.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>14. Governing Law</h2>
+                <p>These Terms & Conditions are governed by and interpreted in accordance with the laws of England and
+                    Wales.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>15. Contact Us</h2>
+                <p>If you have any questions about these Terms & Conditions, please contact us at:</p>
+                <p>📧 info@islandbarbers.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1: Our Branches -->
+                <div class="footer-col">
+                    <h3>Our Branches</h3>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Canary Wharf</h4>
+                    <p>22 Westferry Rd</p>
+                    <p>Millennium Harbour</p>
+                    <p>London</p>
+                    <p>E14 8LW</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Westferry</h4>
+                    <p>Windmill House</p>
+                    <p>152 Westferry Rd</p>
+                    <p>London</p>
+                    <p>E14 3ED</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Poplar</h4>
+                    <p>47a Upper North St</p>
+                    <p>London</p>
+                    <p>E14 6FY</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Dagenham</h4>
+                    <p>Unit 7</p>
+                    <p>Batts House</p>
+                    <p>Merrielands Cres</p>
+                    <p>Dagenham</p>
+                    <p>RM9 6FQ</p>
+                </div>
+
+                <!-- Column 2: Contact Us -->
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Email</h4>
+                    <p>info@islandbarbers.com</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Canary Wharf</h4>
+                    <p>07956 525191</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Westferry</h4>
+                    <p>07852 337 345</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Poplar</h4>
+                    <p>07852 980 723</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Dagenham</h4>
+                    <p>07344 659 905</p>
+
+                    <div class="social-links" style="justify-content: flex-start; margin-top: 20px;">
+                        <a href="https://instagram.com" class="social-icon-link" target="_blank">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="2" width="20" height="20" rx="5" stroke="#d4af37" stroke-width="2"
+                                    fill="none" />
+                                <circle cx="12" cy="12" r="4" stroke="#d4af37" stroke-width="2" fill="none" />
+                                <circle cx="18" cy="6" r="1.5" fill="#d4af37" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 3: Quick Links -->
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#" class="btn-primary" onclick="openModal()">Book Now</a></li>
+
+                        <!-- Services Links -->
+                        <li style="margin-top: 10px;"><a href="services/gents-haircut.html">Gents Haircut</a></li>
+                        <li><a href="services/haircut-and-beard.html">Haircut & Beard</a></li>
+                        <li><a href="services/beard-trim.html">Beard Trim</a></li>
+                        <li><a href="services/kids-haircut.html">Kids Haircut (Under 12)</a></li>
+                        <li><a href="services/buzz-cut.html">Buzz Cut</a></li>
+                        <li><a href="services/buzz-cut.html">Buzz Cut & Beard</a></li>
+                        <li><a href="services/vip-package.html">VIP Full Grooming Package</a></li>
+
+                        <li style="margin-top: 10px;"><a href="contact.html">Contact</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2025 Island Barbers</p>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 5px;">Powered by <a href="#"
+                        style="color: #888; text-decoration: none;">The Web Dev Mason</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-btn" onclick="closeModal()">×</span>
+            <h2 style="margin-bottom: 20px;">Book Appointment</h2>
+
+            <div id="booking-step-1">
+                <div style="margin-bottom: 15px; text-align: left;">
+                    <label style="color:#888; font-size: 0.9rem;">Choose Location</label>
+                    <select id="locationSelect" onchange="updateBarberList()"
+                        style="width: 100%; padding: 12px; background: #111; color: #fff; border: 1px solid #333; margin-top: 5px;">
+                        <option value="" disabled selected>Select a Shop</option>
+                        <option value="Westferry">Isle of Dogs (Westferry)</option>
+                        <option value="Poplar">Poplar (Upper North St)</option>
+                        <option value="Essex">Essex (Dagenham)</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 15px; text-align: left;">
+                    <label style="color:#888; font-size: 0.9rem;">Choose Barber</label>
+                    <select id="barberSelect" onchange="resetTimeSlot()" disabled
+                        style="width: 100%; padding: 12px; background: #111; color: #fff; border: 1px solid #333; margin-top: 5px; opacity: 0.5;">
+                        <option>Select Location First</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 20px; text-align: left;">
+                    <label style="color:#888; font-size: 0.9rem;">Choose Date</label>
+                    <input type="date" id="dateSelect" onchange="loadAvailability()"
+                        style="width: 100%; padding: 12px; background: #111; color: #fff; border: 1px solid #333; margin-top: 5px;">
+                </div>
+
+                <p id="loading-text" style="display:none; color: #d4af37;">Checking availability...</p>
+                <div id="time-slots"
+                    style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px;">
+                </div>
+            </div>
+
+            <div id="booking-step-2" style="display: none; text-align: left;">
+                <h4 id="confirm-details-header" style="color: #fff; margin-bottom: 15px;">Confirm Details</h4>
+                <input type="text" id="custName" placeholder="Your Name"
+                    style="width: 100%; padding: 12px; margin-bottom: 10px; background: #111; border: 1px solid #333; color: white;">
+                <input type="email" id="custEmail" placeholder="Your Email"
+                    style="width: 100%; padding: 12px; margin-bottom: 10px; background: #111; border: 1px solid #333; color: white;">
+                <input type="tel" id="custPhone" placeholder="Mobile Number"
+                    style="width: 100%; padding: 12px; margin-bottom: 20px; background: #111; border: 1px solid #333; color: white;">
+
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="backToStep1()" class="btn-outline" style="flex: 1; padding: 12px;">Back</button>
+                    <button onclick="finalizeBooking()" class="btn" style="flex: 1; padding: 12px;">Confirm
+                        Booking</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="statusModal" class="modal-overlay" style="z-index: 4000;">
+        <div class="modal-box" style="max-width: 400px; border-color: #333;">
+            <div id="statusIcon" style="font-size: 3rem; margin-bottom: 15px;"></div>
+            <h3 id="statusTitle" style="font-size: 1.5rem; margin-bottom: 10px;"></h3>
+            <p id="statusMessage" style="color: #ccc; margin-bottom: 25px;"></p>
+            <button onclick="closeStatusModal()" class="btn" style="width: 100%;">OK</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
