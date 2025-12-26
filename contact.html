@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Island Barbers</title>
+    <meta name="description"
+        content="Contact Island Barbers. Request a service or book an appointment at our Westferry, Poplar, Dagenham, or Canary Wharf branches.">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Supabase & EmailJS -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" class="logo-link" style="opacity:0; pointer-events:none;">ISLAND BARBERS</a>
+        </div>
+        <div class="hamburger" onclick="toggleMobileNav()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links">
+            <div class="close-menu-btn" onclick="toggleMobileNav()">×</div>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown">
+                <a href="index.html#services" class="dropbtn">Services <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="services/gents-haircut.html">Gents Haircut</a>
+                    <a href="services/haircut-and-beard.html">Haircut & Beard</a>
+                    <a href="services/beard-trim.html">Beard Trim</a>
+                    <a href="services/kids-haircut.html">Kids Haircut</a>
+                    <a href="services/buzz-cut.html">Buzz Cut</a>
+                    <a href="services/vip-package.html">VIP Full Grooming Package</a>
+                </div>
+            </li>
+            <li><a href="#" onclick="openModal()" class="booking-link">Book Appointment</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="contact-hero-content">
+                <h1>Contact Island Barbers</h1>
+                <p>Have a question or need help choosing a service? Send us a message, and we'll get back to you as soon
+                    as possible.</p>
+                <!-- Design shows 'Book an Appointment' button here too -->
+                <button onclick="openModal()" class="btn"
+                    style="background:#fff; color:#000; border:none; padding: 15px 30px;">Book an Appointment <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="container">
+            <h2 style="display:none;">Send a Message</h2> <!-- Hidden header for compatibility/SEO if needed -->
+            <!-- Form -->
+            <form class="contact-form" onsubmit="sendContactForm(event)">
+                <div class="form-group">
+                    <label class="form-label">Full Name *</label>
+                    <input type="text" id="contactName" class="form-input" placeholder="E.g John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone Number *</label>
+                    <input type="tel" id="contactPhone" class="form-input" placeholder="E.g 07800000000" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="contactEmail" class="form-input" placeholder="E.g john@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Message</label>
+                    <textarea id="contactMessage" class="form-textarea"
+                        placeholder="Type your message here..."></textarea>
+                </div>
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Locations Grid Section -->
+    <section class="locations-section" style="padding: 60px 0; background: #f5f5f5;">
+        <div class="container">
+            <h2 style="color:#000; font-family:'Oswald'; margin-bottom: 10px; font-size: 2rem;">Find Your Nearest Island
+                Barbers</h2>
+            <p style="color:#666; margin-bottom: 40px; max-width: 800px;">Choose the Island Barbers location that's most
+                convenient for you. View our branch details below, explore the map, and book your appointment online in
+                just a few clicks.</p>
+
+            <div class="locations-grid">
+                <div class="location-card">
+                    <iframe
+                        src="https://maps.google.com/maps?q=152%20Westferry%20Road%20London%20E14%203ED&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        width="100%" height="200" style="border:0; margin-bottom:15px;" loading="lazy"></iframe>
+                    <h4>Island Barbers Westferry</h4>
+                    <p>📍 152 Westferry Rd, London E14 3ED</p>
+                    <p>📞 07852 337345</p>
+                    <div class="location-rating">⭐ 4.8 ★ (500+ reviews)</div>
+                    <p style="font-size:0.85rem; margin-top:10px; line-height: 1.5;">Enjoy a premium haircut in the
+                        heart of Canary Wharf. Skilled barbers, relaxed atmosphere, and top-quality grooming — every
+                        visit guaranteed to impress.</p>
+                    <button onclick="openModalWithLocation('Westferry')" class="book-btn-sm">Book Now</button>
+                </div>
+
+                <div class="location-card">
+                    <iframe
+                        src="https://maps.google.com/maps?q=47%20Upper%20North%20Street%20London%20E14%206FY&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        width="100%" height="200" style="border:0; margin-bottom:15px;" loading="lazy"></iframe>
+                    <h4>Island Barbers Poplar</h4>
+                    <p>📍 47a Upper North St, London E14 6FY</p>
+                    <p>📞 07852 980723</p>
+                    <div class="location-rating">⭐ 4.9 ★ (440+ reviews)</div>
+                    <p style="font-size:0.85rem; margin-top:10px; line-height: 1.5;">Our Poplar barbershop offers expert
+                        cuts, beard styling, and grooming with attention to detail and modern technique.</p>
+                    <button onclick="openModalWithLocation('Poplar')" class="book-btn-sm">Book Now</button>
+                </div>
+
+                <div class="location-card">
+                    <iframe
+                        src="https://maps.google.com/maps?q=Dagenham%20RM9%206FQ&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        width="100%" height="200" style="border:0; margin-bottom:15px;" loading="lazy"></iframe>
+                    <h4>Island Barbers Dagenham</h4>
+                    <p>📍 Unit 7, Batts House, Merrielands Cres, Dagenham RM9 6FQ</p>
+                    <p>📞 07344 659905</p>
+                    <div class="location-rating">⭐ 5.0 ★ (100+ reviews)</div>
+                    <p style="font-size:0.85rem; margin-top:10px; line-height: 1.5;">Our Dagenham branch brings the
+                        trusted Island Barbers experience to the local community.</p>
+                    <button onclick="openModalWithLocation('Essex')" class="book-btn-sm">Book Now</button>
+                </div>
+
+                <!-- Canary Wharf Card -->
+                <div class="location-card">
+                    <iframe
+                        src="https://maps.google.com/maps?q=22%20Westferry%20Road%20London%20E14%208LW&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        width="100%" height="200" style="border:0; margin-bottom:15px;" loading="lazy"></iframe>
+                    <h4>Island Barbers Canary Wharf</h4>
+                    <p>📍 22 Westferry Rd, Millennium Hbr, London E14 8LW</p>
+                    <p>📞 07956 525191</p>
+                    <div class="location-rating">⭐ 5.0 ★ (21+ reviews)</div>
+                    <p style="font-size:0.85rem; margin-top:10px; line-height: 1.5;">Our newest branch delivers the same
+                        Island Barbers experience, fresh fades, clean shaves, and a welcoming environment.</p>
+                    <button onclick="openModalWithLocation('Westferry')" class="book-btn-sm">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1: Our Branches -->
+                <div class="footer-col">
+                    <h3>Our Branches</h3>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Canary Wharf</h4>
+                    <p>22 Westferry Rd</p>
+                    <p>Millennium Harbour</p>
+                    <p>London</p>
+                    <p>E14 8LW</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Westferry</h4>
+                    <p>Windmill House</p>
+                    <p>152 Westferry Rd</p>
+                    <p>London</p>
+                    <p>E14 3ED</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Poplar</h4>
+                    <p>47a Upper North St</p>
+                    <p>London</p>
+                    <p>E14 6FY</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Dagenham</h4>
+                    <p>Unit 7</p>
+                    <p>Batts House</p>
+                    <p>Merrielands Cres</p>
+                    <p>Dagenham</p>
+                    <p>RM9 6FQ</p>
+
+
+                </div>
+
+                <!-- Column 2: Contact Us -->
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Email</h4>
+                    <p>info@islandbarbers.com</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Canary Wharf</h4>
+                    <p>07956 525191</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Westferry</h4>
+                    <p>07852 337345</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Poplar</h4>
+                    <p>07852 980723</p>
+
+                    <h4 style="color: #fff; font-size: 1rem; margin-top: 15px;">Dagenham</h4>
+                    <p>07344 659905</p>
+
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="https://instagram.com" class="social-icon-link" target="_blank">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="2" width="20" height="20" rx="5" stroke="#d4af37" stroke-width="2"
+                                    fill="none" />
+                                <circle cx="12" cy="12" r="4" stroke="#d4af37" stroke-width="2" fill="none" />
+                                <circle cx="18" cy="6" r="1.5" fill="#d4af37" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 3: Quick Links -->
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="#" onclick="openModal()">Book Appointment</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+
+                        <!-- Services Links -->
+                        <li style="margin-top: 10px;"><a href="services/gents-haircut.html">Gents Haircut</a></li>
+                        <li><a href="services/haircut-and-beard.html">Haircut & Beard</a></li>
+                        <li><a href="services/kids-haircut.html">Kids Haircut (Under 12)</a></li>
+                        <li><a href="services/beard-trim.html">Beard Trim</a></li>
+                        <li><a href="services/buzz-cut.html">Buzz Cut & OAP</a></li>
+                        <li><a href="services/vip-package.html">VIP Full Grooming Package</a></li>
+
+                        <li style="margin-top: 10px;"><a href="contact.html">Contact</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 Island Barbers</p>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 5px;">Powered by <a
+                        href="https://thewebdevmason.co.uk/" style="color: #888; text-decoration: none;">The Web-Dev
+                        Mason</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-btn" onclick="closeModal()">×</span>
+            <h2 style="margin-bottom: 20px;">Book Appointment</h2>
+
+            <div id="booking-step-1">
+                <div style="margin-bottom: 15px; text-align: left;">
+                    <label style="color:#888; font-size: 0.9rem;">Choose Location</label>
+                    <select id="locationSelect" onchange="updateBarberList()"
+                        style="width: 100%; padding: 12px; background: #111; color: #fff; border: 1px solid #333; margin-top: 5px;">
+                        <option value="" disabled selected>Select a Shop</option>
+                        <option value="Westferry">Isle of Dogs (Westferry)</option>
+                        <option value="Poplar">Poplar (Upper North St)</option>
+                        <option value="Essex">Essex (Dagenham)</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 15px; text-align: left;">
+                    <label style="color:#888; font-size: 0.9rem;">Choose Barber</label>
+                    <select id="barberSelect" onchange="resetTimeSlot()" disabled
+                        style="width: 100%; padding: 12px; background: #111; color: #fff; border: 1px solid #333; margin-top: 5px; opacity: 0.5;">
+                        <option>Select Location First</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 20px; text-align: left;">
+                    <label style="color:#888; font-size: 0.9rem;">Choose Date</label>
+                    <input type="date" id="dateSelect" onchange="loadAvailability()"
+                        style="width: 100%; padding: 12px; background: #111; color: #fff; border: 1px solid #333; margin-top: 5px;">
+                </div>
+
+                <p id="loading-text" style="display:none; color: #d4af37;">Checking availability...</p>
+                <div id="time-slots"
+                    style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px;">
+                </div>
+            </div>
+
+            <div id="booking-step-2" style="display: none; text-align: left;">
+                <h4 id="confirm-details-header" style="color: #fff; margin-bottom: 15px;">Confirm Details</h4>
+                <input type="text" id="custName" placeholder="Your Name"
+                    style="width: 100%; padding: 12px; margin-bottom: 10px; background: #111; border: 1px solid #333; color: white;">
+                <input type="email" id="custEmail" placeholder="Your Email"
+                    style="width: 100%; padding: 12px; margin-bottom: 10px; background: #111; border: 1px solid #333; color: white;">
+                <input type="tel" id="custPhone" placeholder="Your Phone"
+                    style="width: 100%; padding: 12px; margin-bottom: 10px; background: #111; border: 1px solid #333; color: white;">
+
+                <button onclick="finalizeBooking()" class="btn-full-width">Confirm Booking</button>
+                <button onclick="backToStep1()"
+                    style="background:transparent; border:none; color:#888; margin-top:10px; cursor:pointer;">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Modal -->
+    <div id="statusModal" class="modal-overlay" style="z-index: 4000;">
+        <div class="modal-box" style="max-width: 400px; padding: 40px;">
+            <div id="statusIcon" style="font-size: 3rem; margin-bottom: 20px;"></div>
+            <h3 id="statusTitle" style="margin-bottom: 10px;"></h3>
+            <p id="statusMessage" style="color: #ccc;"></p>
+            <button onclick="closeStatusModal()" class="btn-full-width" style="margin-top: 20px;">OK</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
